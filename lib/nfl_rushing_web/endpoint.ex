@@ -10,6 +10,7 @@ defmodule NflRushingWeb.Endpoint do
     signing_salt: "m0jfc6LH"
   ]
 
+  socket "/live", Phoenix.LiveView.Socket, websocket: true
   socket "/socket", NflRushingWeb.UserSocket,
     websocket: true,
     longpoll: false

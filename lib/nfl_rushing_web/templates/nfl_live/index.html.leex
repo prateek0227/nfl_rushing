@@ -1,0 +1,53 @@
+<h1>LiveView is awesome!</h1>
+<form phx-submit="search">
+    <input placeholder="Search by Player Name" name="player-name"/>
+    <button type="submit" phx-throttle="1000">Search</button>
+</form>
+<button phx-capture-click="export">Export</button>
+<table>
+<thead>
+<tr>
+    <th>Name</th>
+    <th>Team</th>
+    <th>Position</th>
+    <th>Rushing Attempts</th>
+    <th>Rushing Attempts/Game</th>
+    <th>
+        <%= live_patch "Total Rushing Yards", to: Routes.live_path(@socket, NflRushingWeb.NflRushingLive , %{sort_by: "Yds"}) %>
+    </th>
+    <th>Rushing Average Yards Per Attempt</th>
+    <th>Rushing Yards Per Game</th>
+    <th>
+        <%= live_patch "Total Rushing Touchdowns", to: Routes.live_path(@socket, NflRushingWeb.NflRushingLive , %{sort_by: "TD"}) %>
+    </th>
+    <th>
+        <%= live_patch "Longest Rush", to: Routes.live_path(@socket, NflRushingWeb.NflRushingLive , %{sort_by: "Lng"}) %>
+    </th>
+    <th>Rushing First Downs</th>
+    <th>Rushing First Down Percentage</th>
+    <th>Rushing 20+ Yards Each</th>
+    <th>Rushing 40+ Yards Each</th>
+    <th>Rushing Fumbles</th>
+</tr>
+</thead>
+<tbody>
+<%= for col <- @data do %>
+    <tr>
+        <td><%= col["Player"] %></td>
+        <td><%= col["Team"] %></td>
+        <td><%= col["Pos"] %></td>
+        <td><%= col["Att"] %></td>
+        <td><%= col["Att/G"] %></td>
+        <td><%= col["Yds"] %></td>
+        <td><%= col["Avg"] %></td>
+        <td><%= col["Yds/G"] %></td>
+        <td><%= col["TD"] %></td>
+        <td><%= col["Lng"] %></td>
+        <td><%= col["1st"] %></td>
+        <td><%= col["1st%"] %></td>
+        <td><%= col["20+"] %></td>
+        <td><%= col["40+"] %></td>
+        <td><%= col["FUM"] %></td>
+    </tr>
+<% end %>
+</tbody>

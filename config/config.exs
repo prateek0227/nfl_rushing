@@ -13,7 +13,7 @@ config :nfl_rushing, NflRushingWeb.Endpoint,
   secret_key_base: "rD87qOMpJ6yY+/Ws1I3zVAshZzox6you667ihZ3txqWEsDmm9aKZqO9gvL7QE/OI",
   render_errors: [view: NflRushingWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: NflRushing.PubSub, adapter: Phoenix.PubSub.PG2],
-  live_view: [signing_salt: "DDXVWe9R"]
+  live_view: [signing_salt: "m0jfc6LH"]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -26,3 +26,6 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
+
+config :phoenix,
+  template_engines: [leex: Phoenix.LiveView.Engine]

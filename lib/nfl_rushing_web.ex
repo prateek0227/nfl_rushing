@@ -20,7 +20,7 @@ defmodule NflRushingWeb do
   def controller do
     quote do
       use Phoenix.Controller, namespace: NflRushingWeb
-
+      import Phoenix.LiveView.Controller
       import Plug.Conn
       import NflRushingWeb.Gettext
       alias NflRushingWeb.Router.Helpers, as: Routes
@@ -42,6 +42,7 @@ defmodule NflRushingWeb do
       import NflRushingWeb.ErrorHelpers
       import NflRushingWeb.Gettext
       alias NflRushingWeb.Router.Helpers, as: Routes
+      import Phoenix.LiveView.Helpers
     end
   end
 
@@ -50,6 +51,7 @@ defmodule NflRushingWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 
